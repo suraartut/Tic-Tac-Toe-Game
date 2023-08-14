@@ -19,6 +19,22 @@ namespace Tic_Tac_Toe_Game
             RestartGame();
         }
 
+        private void CPUMove(object sender, EventArgs e)
+        {
+            if (buttons.Count>0)
+            {
+                int index = random.Next(buttons.Count);
+                buttons[index].Enabled=false;
+                currentPlayer = Player.O;
+                buttons[index].Text = currentPlayer.ToString();
+                buttons[index].BackColor = Color.Cyan;
+                buttons.RemoveAt(index);
+                CheckGame();
+                CPUTimer.Stop();
+
+            }
+        }
+
         private void PlayerClickButton(object sender, EventArgs e)
         {
             var button = (Button)sender;
@@ -38,7 +54,37 @@ namespace Tic_Tac_Toe_Game
 
         private void CheckGame()
         {
+            if(button1.Text == "X" && button2.Text=="X" && button3.Text=="X" 
+                || button4.Text == "X" && button5.Text == "X" && button6.Text == "X"
+                || button7.Text == "X" && button8.Text == "X" && button9.Text == "X"
+                || button1.Text == "X" && button5.Text == "X" && button9.Text == "X"
+                || button1.Text == "X" && button4.Text == "X" && button7.Text == "X"
+                || button2.Text == "X" && button5.Text == "X" && button8.Text == "X"
+                || button3.Text == "X" && button6.Text == "X" && button9.Text == "X"
+                || button3.Text == "X" && button5.Text == "X" && button7.Text == "X")
+            {
+                CPUTimer.Stop();
+                MessageBox.Show("Player Wins", "MOO Says");
+                playerWinCount++;
+                label1.Text = "Player Wins: " + playerWinCount;
+                RestartGame();
+            }
 
+            else if (button1.Text == "O" && button2.Text == "O" && button3.Text == "O"
+                || button7.Text == "O" && button8.Text == "O" && button9.Text == "O"
+                || button1.Text == "O" && button5.Text == "O" && button9.Text == "O"
+                || button4.Text == "O" && button5.Text == "O" && button6.Text == "O"
+                || button1.Text == "O" && button4.Text == "O" && button7.Text == "O"
+                || button2.Text == "O" && button5.Text == "O" && button8.Text == "O"
+                || button3.Text == "O" && button6.Text == "O" && button9.Text == "O"
+                || button3.Text == "O" && button5.Text == "O" && button7.Text == "O")
+            {
+                CPUTimer.Stop();
+                MessageBox.Show("CPU Wins", "MOO Says");
+                CPUWinCount++;
+                label1.Text = "CPU Wins: " + CPUWinCount;
+                RestartGame();
+            }
         }
 
         private void RestartGame()
