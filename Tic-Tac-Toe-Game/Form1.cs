@@ -64,7 +64,7 @@ namespace Tic_Tac_Toe_Game
                 || button3.Text == "X" && button5.Text == "X" && button7.Text == "X")
             {
                 CPUTimer.Stop();
-                MessageBox.Show("Player Wins", "MOO Says");
+                MessageBox.Show("Siz Kazandýnýz!");
                 playerWinCount++;
                 label1.Text = "Player Wins: " + playerWinCount;
                 RestartGame();
@@ -80,9 +80,9 @@ namespace Tic_Tac_Toe_Game
                 || button3.Text == "O" && button5.Text == "O" && button7.Text == "O")
             {
                 CPUTimer.Stop();
-                MessageBox.Show("CPU Wins", "MOO Says");
+                MessageBox.Show("Bilgisayar Kazandý!");
                 CPUWinCount++;
-                label1.Text = "CPU Wins: " + CPUWinCount;
+                label2.Text = "CPU Wins: " + CPUWinCount;
                 RestartGame();
             }
         }
